@@ -61,5 +61,5 @@ print(round(sum(numbers2) / len(numbers2)))
 
 numbers3 = [690, 620, 890, 2490]
 
-for numba in numbers2:
+for numba in numbers3:
     print(f'Молочное: {numba} тенге')
