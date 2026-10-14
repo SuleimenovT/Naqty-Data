@@ -3,30 +3,30 @@ import pandas as pd
 # 2.1
 
 df = pd.read_csv('dala_orders.csv')
-# print(df.head())
-# print(df.tail(3))
+print(df.head())
+print(df.tail(3))
 
 # 3.1
 
-# print(df[['order_id', 'product', 'qty']].head())
+print(df[['order_id', 'product', 'qty']].head())
 
 # 4.1
-# df['amount_vat'] = (df['qty'] * df['price'] * 1.12).round(0)
-# print(df['amount_vat'].sum())
+df['amount_vat'] = (df['qty'] * df['price'] * 1.12).round(0)
+print(df['amount_vat'].sum())
 
 # 5.1
 
-# astana = df[df['city'] == 'Астана']
-# print(len(astana))
-# print((astana['price'] * astana['qty']).sum())
+astana = df[df['city'] == 'Астана']
+print(len(astana))
+print((astana['price'] * astana['qty']).sum())
 
 # 5.2
-# dairy = df[(df['category'] == 'Молочные продукты') & (df['price'] > 1000)]
-# print(len(dairy))
+dairy = df[(df['category'] == 'Молочные продукты') & (df['price'] > 1000)]
+print(len(dairy))
 
 # 6.1
-# low3 = df.sort_values('amount').head(3)
-# print(low3[['order_id', 'product', 'amount']])
+low3 = df.sort_values('amount').head(3)
+print(low3[['order_id', 'product', 'amount']])
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ДОМАШНЕЕ ЗАДАНИЕ
