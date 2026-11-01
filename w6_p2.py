@@ -161,3 +161,91 @@ print('---------------------------------------------------')
 
 #5.1
 
+city_revenue = (
+    raw.groupby('city')['amount']
+    .sum()
+    .sort_values()
+)
+
+top2 = city_revenue.nlargest(2).index
+
+colors = [
+    MAIN if city in top2 else MUTED
+    for city in city_revenue.index
+]
+
+plt.figure(figsize=(8, 4))
+
+plt.barh(
+    city_revenue.index,
+    city_revenue.values,
+    color=colors
+)
+
+plt.title('Алматы и Караганда дают 64% выручки')
+plt.xlabel('Выручка, ₸')
+plt.xlim(left=0)
+
+plt.tight_layout()
+plt.show()
+
+#5.2
+
+
+category_revenue = (
+    raw.groupby('category')['amount']
+    .sum()
+    .sort_values()
+)
+
+plt.figure(figsize=(8, 4))
+
+plt.barh(
+    category_revenue.index,
+    category_revenue.values,
+    color=MAIN
+)
+
+plt.title('Мясо и бакалея дают 72% выручки')
+plt.xlabel('Выручка, ₸')
+plt.xlim(left=0)
+
+plt.tight_layout()
+plt.show()
+
+
+#5.3
+
+avg_check = raw['amount'].mean()
+median_check = raw['amount'].median()
+
+plt.figure(figsize=(8, 4))
+
+plt.hist(
+    raw['amount'],
+    bins=10,
+    color=MUTED,
+    edgecolor='white'
+)
+
+plt.axvline(
+    avg_check,
+    color=MAIN,
+    linestyle='--',
+    label=f'Среднее: {round(avg_check):,} ₸'
+)
+
+plt.axvline(
+    median_check,
+    color='black',
+    linestyle=':',
+    label=f'Медиана: {round(median_check):,} ₸'
+)
+
+plt.title('Крупные заказы тянут средний чек вверх')
+plt.xlabel('Сумма заказа, ₸')
+plt.ylabel('Количество заказов')
+
+plt.legend()
+plt.tight_layout()
+plt.show()
